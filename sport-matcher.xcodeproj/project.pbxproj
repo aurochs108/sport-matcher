@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6F109A5B2C599172009225EA /* StringSizeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F109A5A2C599172009225EA /* StringSizeProvider.swift */; };
 		6F109A5D2C59918F009225EA /* StringSizeProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F109A5C2C59918F009225EA /* StringSizeProviderProtocol.swift */; };
+		6F1F1CCF2C602F82002384CF /* ProfileCreationActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1F1CCE2C602F82002384CF /* ProfileCreationActivityModel.swift */; };
 		6F655AF12C51ABAC0027254D /* sport_matcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F655AF02C51ABAC0027254D /* sport_matcherApp.swift */; };
 		6F655AF52C51ABAD0027254D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F655AF42C51ABAD0027254D /* Assets.xcassets */; };
 		6F655AF92C51ABAD0027254D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F655AF82C51ABAD0027254D /* Preview Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		6F109A5A2C599172009225EA /* StringSizeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringSizeProvider.swift; path = ../../../../../../Documents/StringSizeProvider.swift; sourceTree = "<group>"; };
 		6F109A5C2C59918F009225EA /* StringSizeProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSizeProviderProtocol.swift; sourceTree = "<group>"; };
+		6F1F1CCE2C602F82002384CF /* ProfileCreationActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationActivityModel.swift; sourceTree = "<group>"; };
 		6F655AED2C51ABAC0027254D /* sport-matcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sport-matcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F655AF02C51ABAC0027254D /* sport_matcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sport_matcherApp.swift; sourceTree = "<group>"; };
 		6F655AF42C51ABAD0027254D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,6 +84,14 @@
 				6F109A5C2C59918F009225EA /* StringSizeProviderProtocol.swift */,
 			);
 			path = String;
+			sourceTree = "<group>";
+		};
+		6F1F1CCD2C602F6F002384CF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6F1F1CCE2C602F82002384CF /* ProfileCreationActivityModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6F655AE42C51ABAC0027254D = {
@@ -136,6 +146,7 @@
 		6F655B1B2C51ADA60027254D /* ProfileCreation */ = {
 			isa = PBXGroup;
 			children = (
+				6F1F1CCD2C602F6F002384CF /* Model */,
 				6F655B1D2C51ADBF0027254D /* View */,
 				6F655B1C2C51ADB70027254D /* Logic */,
 			);
@@ -339,6 +350,7 @@
 				6F655B252C51B0AA0027254D /* IntroductionView.swift in Sources */,
 				6FCB643D2C567AFD007A76B0 /* Activity.swift in Sources */,
 				6F655AF12C51ABAC0027254D /* sport_matcherApp.swift in Sources */,
+				6F1F1CCF2C602F82002384CF /* ProfileCreationActivityModel.swift in Sources */,
 				6F655B272C51B0BA0027254D /* IntroductionViewModel.swift in Sources */,
 				6F655B292C51B4270027254D /* ProfileCreationViewModel.swift in Sources */,
 			);

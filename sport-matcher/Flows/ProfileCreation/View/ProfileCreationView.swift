@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileCreationView: View {
     enum Field {
         case name
+        case whatsapp
     }
 
     @StateObject private var viewModel: ProfileCreationViewModel
@@ -29,24 +30,15 @@ struct ProfileCreationView: View {
                     profilePicture()
                     Spacer()
                 }
-                ZStack {
-                    Color.white
-                    RoundedRectangle(cornerRadius: 5)
-                        .strokeBorder(.gray, lineWidth: 1)
-                    TextField("Name", text: $viewModel.name)
-                        .font(.title2)
-                        .foregroundStyle(.black)
-                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-                        .autocorrectionDisabled()
-                        .focused($focusedField, equals: .name)
-                }
-                .frame(height: 30)
                 .onTapGesture {
                     focusedField = .name
                 }
+                profileTextField(text: "Name", output: $viewModel.name, keyboardType: .default, field: .name)
+                profileTextField(text: "Whatsapp number", output: $viewModel.name, keyboardType: .decimalPad, field: .whatsapp)
                 ScrollView {
                     activitiesChooser()
                 }
+                .scrollBounceBehavior(.basedOnSize)
                 Spacer()
                 Button {
                     print("Create")
@@ -63,6 +55,31 @@ struct ProfileCreationView: View {
             .navigationTitle("Create profile")
         }
         .padding(.horizontal)
+    }
+    
+    @ViewBuilder
+    private func profileTextField(
+        text: String,
+        output: Binding<String>,
+        keyboardType: UIKeyboardType,
+        field: Field
+    ) -> some View {
+        ZStack {
+            Color.white
+            RoundedRectangle(cornerRadius: 5)
+                .strokeBorder(.gray, lineWidth: 1)
+            TextField(text, text: output)
+                .font(.title2)
+                .foregroundStyle(.black)
+                .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                .autocorrectionDisabled()
+                .focused($focusedField, equals: field)
+                .keyboardType(keyboardType)
+        }
+        .frame(height: 30)
+        .onTapGesture {
+            focusedField = field
+        }
     }
 
     @ViewBuilder
@@ -109,6 +126,7 @@ struct ProfileCreationView: View {
                 if activityRow.hashValue == activities.first?.hashValue {
                     Spacer()
                 }
+
                 Button {
                     print(activityRow.activity.label)
                 } label: {
@@ -121,7 +139,7 @@ struct ProfileCreationView: View {
                     }
                     .frame(width: activityRow.width)
                 }
-                
+
                 if activityRow.hashValue == activities.last?.hashValue {
                     Spacer()
                 }

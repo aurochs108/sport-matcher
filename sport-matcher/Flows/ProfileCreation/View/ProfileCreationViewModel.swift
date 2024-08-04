@@ -8,14 +8,10 @@
 import Foundation
 import SwiftUI
 
-struct ActivityRow: Hashable {
-    let activity: Activity
-    let width: CGFloat
-}
-
 final class ProfileCreationViewModel: ObservableObject {
     private let stringSizeProvider: StringSizeProviderProtocol
     @MainActor @Published var name = ""
+    @MainActor @Published var whatsapp = ""
     @MainActor @Published private(set) var activitiesViewWidth = 0.0
     let activityFont = UIFont.systemFont(ofSize: 16)
     let spacerBetweenActivities = 8.0
