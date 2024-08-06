@@ -34,11 +34,12 @@ struct ProfileCreationView: View {
                     focusedField = .name
                 }
                 profileTextField(text: "Name", output: $viewModel.name, keyboardType: .default, field: .name)
-                profileTextField(text: "Whatsapp number", output: $viewModel.name, keyboardType: .decimalPad, field: .whatsapp)
+                profileTextField(text: "Whatsapp number", output: $viewModel.whatsapp, keyboardType: .decimalPad, field: .whatsapp)
                 ScrollView {
                     activitiesChooser()
                 }
                 .scrollBounceBehavior(.basedOnSize)
+
                 Spacer()
                 Button {
                     print("Create")
@@ -49,12 +50,13 @@ struct ProfileCreationView: View {
                             .foregroundStyle(.white)
                     }
                 }
+                .disabled(viewModel.shouldCreateButtonBeDisabled)
                 .frame(height: 40)
             }
             .padding(.vertical)
             .navigationTitle("Create profile")
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 8)
     }
     
     @ViewBuilder
@@ -135,7 +137,10 @@ struct ProfileCreationView: View {
                         font: viewModel.activityFont,
                         titleHorizontalPadding: viewModel.activitiesCellHorizontalPadding
                     ) { isSelected in
-                        print(isSelected)
+                        viewModel.onActivitySelect(
+                            activity: activityRow.activity,
+                            isSelected: isSelected
+                        )
                     }
                     .frame(width: activityRow.width)
                 }

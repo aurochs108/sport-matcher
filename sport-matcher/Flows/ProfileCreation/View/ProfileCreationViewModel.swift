@@ -5,6 +5,7 @@
 //  Created by Dawid on 25/07/2024.
 //
 
+import Combine
 import Foundation
 import SwiftUI
 
@@ -13,14 +14,35 @@ final class ProfileCreationViewModel: ObservableObject {
     @MainActor @Published var name = ""
     @MainActor @Published var whatsapp = ""
     @MainActor @Published private(set) var activitiesViewWidth = 0.0
+    @MainActor @Published var selectedActivities = Set<Activity>()
+    @Published var shouldCreateButtonBeDisabled = true
     let activityFont = UIFont.systemFont(ofSize: 16)
     let spacerBetweenActivities = 8.0
     let activitiesCellHorizontalPadding = 10.0
+    private var cancellable = Set<AnyCancellable>()
     
     init(
         stringSizeProvider: StringSizeProviderProtocol = StringSizeProvider()
     ) {
         self.stringSizeProvider = stringSizeProvider
+        
+        bind()
+    }
+    
+    func bind() {
+        Publishers.CombineLatest3($name, $whatsapp, $selectedActivities)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] name, whastsapp, selectedActivities in
+                guard let self else { return }
+                guard !name.isEmpty,
+                      whastsapp.count == 11,
+                      selectedActivities.count <= 1 else {
+                    shouldCreateButtonBeDisabled = true
+                    return
+                }
+                shouldCreateButtonBeDisabled = false
+            }
+            .store(in: &cancellable)
     }
     
     @MainActor
@@ -54,5 +76,14 @@ final class ProfileCreationViewModel: ObservableObject {
             }
         }
         return activitiesRows
+    }
+    
+    @MainActor
+    func onActivitySelect(activity: Activity, isSelected: Bool) {
+        if isSelected {
+            selectedActivities.insert(activity)
+        } else {
+            selectedActivities.remove(activity)
+        }
     }
 }
