@@ -24,23 +24,22 @@ struct ProfileCreationView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack() {
-                    Spacer()
-                    profilePicture()
-                    Spacer()
-                }
-                .onTapGesture {
-                    focusedField = .name
-                }
-                profileTextField(text: "Name", output: $viewModel.name, keyboardType: .default, field: .name)
-                profileTextField(text: "Whatsapp number", output: $viewModel.whatsapp, keyboardType: .decimalPad, field: .whatsapp)
+            VStack(alignment: .leading, spacing: 0) {
                 ScrollView {
+                    HStack() {
+                        Spacer()
+                        profilePicture()
+                        Spacer()
+                    }
+                    .onTapGesture {
+                        focusedField = .name
+                    }
+                    profileTextField(text: "Name", output: $viewModel.name, keyboardType: .default, field: .name)
+                    profileTextField(text: "Whatsapp number", output: $viewModel.whatsapp, keyboardType: .decimalPad, field: .whatsapp)
                     activitiesChooser()
                 }
                 .scrollBounceBehavior(.basedOnSize)
 
-                Spacer()
                 Button {
                     print("Create")
                 } label: {
@@ -53,7 +52,6 @@ struct ProfileCreationView: View {
                 .disabled(viewModel.shouldCreateButtonBeDisabled)
                 .frame(height: 40)
             }
-            .padding(.vertical)
             .navigationTitle("Create profile")
         }
         .padding(.horizontal, 8)
